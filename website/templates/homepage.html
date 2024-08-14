@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Bigos Minecraft Serwer{% endblock %}
+
+{% block content %}
+<h1 id="server-name">Bigos Minecraft Serwer</h1>
+<p id="server-info">Witamy na serwerze Bigos Minecraft. Wskakuj białasie!</p>
+
+<div class="table-container">
+    <table id="server-details">
+        <tr>
+            <td>IP:</td>
+            <td><span id="ip-address">207.154.228.93</span> <button id="copy-button" class="baseButton">Kopiuj</button></td>
+        </tr>
+        <tr>
+            <td>Wersja Minecraft:</td>
+            <td>1.20.1</td>
+        </tr>
+        <tr>
+            <td>Launcher zgodny z:</td>
+            <td>MinecraftForge</td>
+        </tr>
+        <tr>
+            <td>Link do modów:</td>
+            <td><a href="https://drive.google.com/file/d/1RMLiE__t4DiD5xOzs_euFvxyWBbukTXL/view" target="_blank">Link</a></td>
+        </tr>
+    </table>
+</div>
+
+<div class="images">
+    <img src="{{ url_for('static', filename='bigos.jpeg') }}" alt="Bigos Minecraft Logo" class="image">
+</div>
+
+<div id="toast" class="toast">IP skopiowane do schowka</div>
+{% endblock %}

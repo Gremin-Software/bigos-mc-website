@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bigos Minecraft Serwer{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <ul id="navbar-links" class="navbar-links">
+            <li><a href="#" id="redirect-button" onclick="redirectToLink()">Status serwera</a></li>
+            <li><a href="{{ url_for('home') }}">Strona główna</a></li>
+            <li><a href="{{ url_for('stats') }}">Statystyki</a></li>
+            <li onclick="showDonation()"><a href="#">Donate</a></li>
+        </ul>
+    </nav>      
+    <div id="donation" class="donation">
+        <h2>Wspomóż utrzymanie serwera bigos.org.pl</h2>
+        <p>Aby utrzymać serwer potrzebne jest około 95 zł miesięcznie. Poratuj przelewem na nr konta:</p>
+        <h4>64 2910 0006 0000 0000 0266 4011</h4>
+        <h4>Dzięki!</h4>
+        <button class="baseButton" onclick="hideDonation()">Zamknij</button>
+    </div>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

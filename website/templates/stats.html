@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Statystyki Serwera{% endblock %}
+
+{% block content %}
+<h1>Statystyki Serwera</h1>
+<h4>Archiwalne dane z pierwszej edycji serwera zostaną udostępnione po przebudowie strony internetowej.</h4>
+<table id="statsTable" class="display">
+    <thead>
+        <tr>
+            <th style="text-align:center;">Gracz</th>
+            <th style="text-align:center;">Zgony</th>
+            <th style="display:none;">Czas gry (sekundy)</th>
+            <th style="text-align:center;">Czas gry</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in data %}
+            <tr data-playtime="{{ row['Playtime'] }}">
+                <td>{{ row['Player'] }}</td>
+                <td>{{ row['Deaths'] }}</td>
+                <td style="display:none;">{{ row['Playtime'] }}</td>
+                <td>{{ row['Formatted_Playtime'] }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+    const options = {
+        labels: {
+            placeholder: "Szukaj...",
+            searchTitle: "Szukaj w tabeli",
+            pageTitle: "Strona {page}",
+            perPage: "pozycji na stronę",
+            noRows: "Nie znaleziono żadnych wpisów",
+            info: "Wyświetlanie {start} do {end} z {rows} wpisów",
+            noResults: "Brak wyników odpowiadających zapytaniu",
+        },
+        columns: [
+            { select: 0, sortable: true }, // Player
+            { select: 1, sortable: true }, // Deaths
+            { select: 2, hidden: true, sortable: true }, // Playtime (seconds) hidden but sortable
+            { select: 3, sortable: true, render: function(data, cell, row) {
+                const playtime = data[2];
+                return playtime;
+            }}
+        ]
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        new simpleDatatables.DataTable("#statsTable", options);
+    });
+</script>
+{% endblock %}
